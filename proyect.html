@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Final - Ejercicios Web</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+ :root {
+      --bg-gradient: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      --card-bg: #ffffff;
+      --card-hover: #f5f5f5;
+      --text-color: #333;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+      --transition: 0.3s ease-in-out;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin: 0;
+      color: #444;
+    }
+
+    #menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      width: 220px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: var(--card-hover);
+    }
+
+    .card i {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #7b2ff7;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0;
+    }
+
+    #contenido {
+      background: var(--card-bg);
+      color: var(--text-color);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 850px;
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+<body>
+  <h1> Proyecto Final - Ejercicios Web</h1>
+  <div id="menu"></div>
+  <div id="contenido">
+    <h2>Bienvenido</h2>
+    <p>Selecciona una sección del proyecto para ver su contenido.</p>
+  </div>
+  <script>
+    const ejercicios = [
+  {
+    titulo: "Biografía Personal",
+    icono: "fa-user",
+    link: "#",
+    contenido: "<h2>Biografía</h2><p>Nombre: Heriberto Perdomo García<br>Estudiante de Licentuaria en Sistemas y Inforamtica.<br>Apasionado por la programación web y el desarrollo de software.</p><img src='https://via.placeholder.com/150' alt='Foto' style='border-radius:50%; margin-top:10px;' />"
+  },
+  {
+    titulo: "Horario de Clases",
+    icono: "fa-calendar-alt",
+    link: "#",
+    contenido: "<h2>Horario</h2><table border='1' style='width:100%;border-collapse:collapse;text-align:center;'><tr><th>Día</th><th>Asignatura</th><th>Hora</th></tr><tr><td>Lunes</td><td>Inteligencia Artificial</td><td>10:00 AM</td></tr><tr><td>Miércoles</td><td>Programación Web</td><td>08:00 AM</td></tr></table>"
+  },
+  {
+    titulo: "102 Etiquetas HTML",
+    icono: "fa-tags",
+    link: "https://jhoan-fm.github.io/102-Etiquetas-HTML/",
+    contenido: "<h2>Etiquetas HTML</h2><p>&lt;a&gt;, &lt;p&gt;, &lt;div&gt;, &lt;h1&gt; - &lt;h6&gt;, &lt;img&gt;, &lt;form&gt;, etc. (hasta 102).</p>"
+  },
+  {
+    titulo: "Menú tipo Banreservas",
+    icono: "fa-bars",
+    link: "https://jhoan-fm.github.io/Menu/",
+    contenido: "<h2>Menú CSS</h2><p>Ejemplo de menú horizontal con hover y submenús animados utilizando Flexbox y transiciones.</p>"
+  },
+  {
+    titulo: "Validar Cédula (Módulo 10)",
+    icono: "fa-id-card",
+    link: "https://jhoan-fm.github.io/validacion/",
+    contenido: "<h2>Validación de Cédula</h2><p>Se aplica el algoritmo del módulo 10 para validar cédulas dominicanas.</p>"
+  },
+  {
+    titulo: "Menú Dinámico (JSON)",
+    icono: "fa-code",
+    link: "https://jhoan-fm.github.io/Json/",
+    contenido: "<h2>Menú con JSON</h2><p>Los ítems del menú están definidos en un arreglo JSON, lo que permite actualizarlos fácilmente.</p>"
+  },
+  {
+    titulo: "Formulario Multipágina",
+    icono: "fa-paste",
+    link: "https://jhoan-fm.github.io/Formulario/",
+    contenido: "<h2>Formulario Multi-Página</h2><p>Formulario dividido en pasos, mostrando diferentes campos según el paso actual.</p>"
+  },
+  {
+    titulo: "Formulario Contacto + QR",
+    icono: "fa-qrcode",
+    link: "https://jhoan-fm.github.io/C-digo-QR/",
+    contenido: "<h2>Formulario de Contacto</h2><p>Incluye generación de un código QR con los datos ingresados, usando una librería como QRCode.js.</p>"
+  },
+  {
+    titulo: "Formulario + Gráficos",
+    icono: "fa-chart-bar",
+    link: "https://jhoan-fm.github.io/Grafico/",
+    contenido: "<h2>Gráficos</h2><p>Se generan gráficos dinámicos usando Chart.js basados en los datos del formulario.</p>"
+  },
+  {
+    titulo: "Formulario + Base de Datos",
+    icono: "fa-database",
+    link: "https://jhoan-fm.github.io/Formulario/",
+    contenido: "<h2>Base de Datos</h2><p>El formulario se conecta a una base de datos (MySQL, MongoDB, etc.) para insertar y consultar registros.</p>"
+  },
+  {
+    titulo: "Servicio Web Validación Cédula",
+    icono: "fa-shield-alt",
+    link: "https://jhoan-fm.github.io/validacion/",
+    contenido: "<h2>Servicio Web</h2><p>Se desarrolló un servicio RESTful que valida la cédula usando el algoritmo del módulo 10.</p>"
+  }
+];
+
+    const menu = document.getElementById("menu");
+    const contenido = document.getElementById("contenido");
+
+    ejercicios.forEach(ej => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<i class="fas ${ej.icono}"></i><h3>${ej.titulo}</h3>`;
+      card.onclick = () => {
+        if (ej.link !== "#") {
+          window.open(ej.link, '_blank');
+        } else {
+          contenido.innerHTML = ej.contenido;
+          window.scrollTo({ top: contenido.offsetTop, behavior: "smooth" });
+        }
+      };
+      card.onclick = () => {
+        window.location.href = ej.link;
+      };
+      menu.appendChild(card);
+    });
+  </script>
+</body>
+</html>
